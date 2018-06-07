@@ -1,5 +1,5 @@
 # multiplayerGameOfLife
-Multiplayer game of life for CS 3750
+Multiplayer game of life for CS 3750\n
 
 multiplayer game of life
 needs to use a single repository for code amongst team members
