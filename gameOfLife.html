@@ -27,7 +27,6 @@
         ctx.stroke();
       }
     }
-    assignColorToSquare(0,0, "#0000FF");
 
     c.onmouseup = function(e){
       var rect = e.target.getBoundingClientRect();
@@ -114,7 +113,8 @@
   function assignColorToSquare(x, y, color) {
     var c = document.getElementById("gameOfLife");
     var ctx = c.getContext("2d");
-    ctx.fillStyle = color;
+    // ctx.fillStyle = color;
+    ctx.fillStyle = document.getElementById("userColor").value;
     ctx.fillRect( (totalWidth/gameWidth)*x, ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
     ctx.stroke();
   }
@@ -133,6 +133,8 @@
 <canvas id="gameOfLife" width='600px' height='600px' style='border:1px solid #000000;'>
   Your browser does not support html5
 </canvas>
+<p>User color</p>
+<input type="color" id="userColor" value="">
 </body>
 
 </html>
