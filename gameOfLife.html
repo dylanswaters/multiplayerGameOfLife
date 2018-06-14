@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Game of Life</title>
+
+<script>
+
+  var gameWidth = 16;
+  var gameHeight = 16;
+
+  var totalHeight=600;
+  var totalWidth=600;
+
+  function drawGrid() {
+    var c = document.getElementById("gameOfLife");
+    // console.log(c);
+    var ctx = c.getContext("2d");
+    // console.log(ctx);
+    ctx.clearRect(0,0,totalWidth,totalHeight); // clear the canvas
+    ctx.fillStyle = "#000000";
+    ctx.fillRect(0, 0, totalWidth, totalHeight);
+    ctx.stroke();
+    for(var i=0; i<gameWidth; i++){
+      for(var j=0; j<gameHeight; j++){
+        // console.log(i + ", " + j);
+        console.log(((totalWidth/gameWidth)*i) + ", " + ((totalHeight/gameHeight)*j));
+        ctx.fillStyle = "#FFFFFF";
+        ctx.fillRect( ((totalWidth/gameWidth)*i), ((totalHeight/gameHeight)*j), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
+        // ctx.moveTo((600/gameRows)*i, (600/gameColumns)*j);
+        // ctx.lineTo((600/gameRows) * (i+1), (600/gameColumns) * (j+1));
+        ctx.stroke();
+      }
+    }
+  }
+
+  function assignColorToSquare(x, y, color) {
+    ctx.fillStyle = color;
+    ctx.fillRect( (totalWidth/gameWidth)*x), ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
+    ctx.stroke();
+  }
+</script>
+</head>
+
+<body onload = "drawGrid();">
+<canvas id="gameOfLife" width='600px' height='600px' style='border:1px solid #000000;'>
+  Your browser does not support html5
+</canvas>
+</body>
+
+</html>
