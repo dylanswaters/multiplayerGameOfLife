@@ -1,10 +1,12 @@
-<!DOCTYPE html>
-<html>
+﻿
+@{
+    ViewData["Title"] = "Game";
+}
 
 <head>
-  <title>Game of Life</title>
+    <title>Game of Life</title>
 
-<script>
+    <script>
 
   var gameWidth = 16;
   var gameHeight = 16;
@@ -39,13 +41,14 @@
     ctx.fillRect( (totalWidth/gameWidth)*x), ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
     ctx.stroke();
   }
-</script>
+    </script>
 </head>
 
-<body onload = "drawGrid();">
-<canvas id="gameOfLife" width='600px' height='600px' style='border:1px solid #000000;'>
-  Your browser does not support html5
-</canvas>
+<body onload="drawGrid();">
+    <canvas id="gameOfLife" width='600px' height='600px' style='border:1px solid #000000;'>
+        Your browser does not support html5
+    </canvas>
 </body>
 
-</html>
+
+
