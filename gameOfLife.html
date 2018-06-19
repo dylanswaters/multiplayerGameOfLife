@@ -113,8 +113,16 @@
   function assignColorToSquare(x, y, color) {
     var c = document.getElementById("gameOfLife");
     var ctx = c.getContext("2d");
-    // ctx.fillStyle = color;
+    ctx.fillStyle = color;
+    ctx.fillRect( (totalWidth/gameWidth)*x, ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
+    ctx.stroke();
+  }
+
+  function assignColorToSquare(x, y){
+    var c = document.getElementById("gameOfLife");
+    var ctx = c.getContext("2d");
     ctx.fillStyle = document.getElementById("userColor").value;
+    console.log(document.getElementById("userColor").value);
     ctx.fillRect( (totalWidth/gameWidth)*x, ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
     ctx.stroke();
   }
