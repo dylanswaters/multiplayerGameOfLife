@@ -1,4 +1,4 @@
-﻿
+﻿@model GameOfLife.Models.UserInfo;
 @{
     ViewData["Title"] = "Index";
 }
@@ -8,16 +8,33 @@
 </head>
 
 <body>
-
-    <form name="login" method="post" action="~/gameOfLife.html">
-        <p>LOGIN</p>
-        <p>USERNAME:</p>
-        <input type="text" id="username" value="">
-        <p>COLOR:</p>
-        <input type="color" id="userColor" value="">
-        <p></p>
-        <input type="submit" value="Login">
-    </form>
+    <fieldset>
+        <legend>Sign Up</legend>
+        <table>
+            <tr>
+                <td>
+                    @Html.Label("User Name")
+                </td>
+                <td>
+                    @Html.TextBoxFor(account => Model.userName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.Label("Color")
+                </td>
+                <td>
+                    <input type="color" name="userColor" id="userColor" value="">
+                    Request.Form""
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" name="btnSubmit" value="Play" />
+                </td>
+            </tr>
+        </table>
+    </fieldset>
 
 </body>
 

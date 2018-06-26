@@ -8,39 +8,126 @@
 
     <script>
 
-  var gameWidth = 16;
-  var gameHeight = 16;
+        var gameWidth = 16;
+        var gameHeight = 16;
 
-  var totalHeight=600;
-  var totalWidth=600;
+        var totalHeight = 600;
+        var totalWidth = 600;
 
-  function drawGrid() {
-    var c = document.getElementById("gameOfLife");
-    // console.log(c);
-    var ctx = c.getContext("2d");
-    // console.log(ctx);
-    ctx.clearRect(0,0,totalWidth,totalHeight); // clear the canvas
-    ctx.fillStyle = "#000000";
-    ctx.fillRect(0, 0, totalWidth, totalHeight);
-    ctx.stroke();
-    for(var i=0; i<gameWidth; i++){
-      for(var j=0; j<gameHeight; j++){
-        // console.log(i + ", " + j);
-        console.log(((totalWidth/gameWidth)*i) + ", " + ((totalHeight/gameHeight)*j));
-        ctx.fillStyle = "#FFFFFF";
-        ctx.fillRect( ((totalWidth/gameWidth)*i), ((totalHeight/gameHeight)*j), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
-        // ctx.moveTo((600/gameRows)*i, (600/gameColumns)*j);
-        // ctx.lineTo((600/gameRows) * (i+1), (600/gameColumns) * (j+1));
-        ctx.stroke();
-      }
-    }
-  }
+        function drawGrid() {
+            var c = document.getElementById("gameOfLife");
+            var ctx = c.getContext("2d");
+            ctx.clearRect(0, 0, totalWidth, totalHeight); // clear the canvass
+            ctx.fillStyle = "#000000";
+            ctx.fillRect(0, 0, totalWidth, totalHeight);
+            ctx.stroke();
+            for (var i = 0; i < gameWidth; i++) {
+                for (var j = 0; j < gameHeight; j++) {
+                    // console.log(((totalWidth/gameWidth)*i) + ", " + ((totalHeight/gameHeight)*j));
+                    ctx.fillStyle = "#FFFFFF";
+                    ctx.fillRect(((totalWidth / gameWidth) * i), ((totalHeight / gameHeight) * j), (totalWidth / gameWidth) - 1, (totalHeight / gameHeight) - 1);
+                    ctx.stroke();
+                }
+            }
 
-  function assignColorToSquare(x, y, color) {
-    ctx.fillStyle = color;
-    ctx.fillRect( (totalWidth/gameWidth)*x), ((totalHeight/gameHeight)*y), (totalWidth/gameWidth)-1, (totalHeight/gameHeight)-1 );
-    ctx.stroke();
-  }
+            c.onmouseup = function (e) {
+                var rect = e.target.getBoundingClientRect();
+                // x = (2u - w) / w
+                var x = (2 * (e.clientX - rect.left) - rect.width) / rect.width;
+                // y = (h - 2v) / h
+                var y = (rect.height - 2 * (e.clientY - rect.top)) / rect.height;
+                // console.log(x, y);
+                var xCell;
+
+                if (x > -1 && x < -0.875) {
+                    xCell = 0;
+                } else if (x > -0.875 && x < -0.75) {
+                    xCell = 1;
+                } else if (x > -0.75 && x < -0.625) {
+                    xCell = 2;
+                } else if (x > -0.625 && x < -0.5) {
+                    xCell = 3;
+                } else if (x > -0.5 && x < -0.375) {
+                    xCell = 4;
+                } else if (x > -0.375 && x < -0.25) {
+                    xCell = 5;
+                } else if (x > -0.25 && x < -0.125) {
+                    xCell = 6;
+                } else if (x > -0.125 && x < 0) {
+                    xCell = 7;
+                } else if (x > 0 && x < 0.125) {
+                    xCell = 8;
+                } else if (x > 0.125 && x < 0.25) {
+                    xCell = 9;
+                } else if (x > 0.25 && x < 0.375) {
+                    xCell = 10;
+                } else if (x > 0.375 && x < 0.5) {
+                    xCell = 11;
+                } else if (x > 0.5 && x < 0.625) {
+                    xCell = 12;
+                } else if (x > 0.625 && x < 0.75) {
+                    xCell = 13;
+                } else if (x > 0.75 && x < 0.875) {
+                    xCell = 14;
+                } else if (x > 0.875 && x < 1.0) {
+                    xCell = 15;
+                }
+
+                if (y > -1 && y < -0.875) {
+                    yCell = 15;
+                } else if (y > -0.875 && y < -0.75) {
+                    yCell = 14;
+                } else if (y > -0.75 && y < -0.625) {
+                    yCell = 13;
+                } else if (y > -0.625 && y < -0.5) {
+                    yCell = 12;
+                } else if (y > -0.5 && y < -0.375) {
+                    yCell = 11;
+                } else if (y > -0.375 && y < -0.25) {
+                    yCell = 10;
+                } else if (y > -0.25 && y < -0.125) {
+                    yCell = 9;
+                } else if (y > -0.125 && y < 0) {
+                    yCell = 8;
+                } else if (y > 0 && y < 0.125) {
+                    yCell = 7;
+                } else if (y > 0.125 && y < 0.25) {
+                    yCell = 6;
+                } else if (y > 0.25 && y < 0.375) {
+                    yCell = 5;
+                } else if (y > 0.375 && y < 0.5) {
+                    yCell = 4;
+                } else if (y > 0.5 && y < 0.625) {
+                    yCell = 3;
+                } else if (y > 0.625 && y < 0.75) {
+                    yCell = 2;
+                } else if (y > 0.75 && y < 0.875) {
+                    yCell = 1;
+                } else if (y > 0.875 && y < 1.0) {
+                    yCell = 0;
+                }
+
+                // console.log(xCell, yCell);
+                assignColorToSquare(xCell, yCell, "#0000FF");
+            }
+        }
+
+        function assignColorToSquare(x, y, color) {
+            var c = document.getElementById("gameOfLife");
+            var ctx = c.getContext("2d");
+            // ctx.fillStyle = color;
+            ctx.fillStyle = document.getElementById("userColor").value;
+            ctx.fillRect((totalWidth / gameWidth) * x, ((totalHeight / gameHeight) * y), (totalWidth / gameWidth) - 1, (totalHeight / gameHeight) - 1);
+            ctx.stroke();
+        }
+
+        function clearSquare(x, y) {
+            var c = document.getElementById("gameOfLife");
+            var ctx = c.getContext("2d");
+            ctx.fillStyle = "#FFFFFF";
+            ctx.fillRect((totalWidth / gameWidth) * x, ((totalHeight / gameHeight) * y), (totalWidth / gameWidth) - 1, (totalHeight / gameHeight) - 1);
+            ctx.stroke();
+        }
     </script>
 </head>
 
@@ -48,7 +135,8 @@
     <canvas id="gameOfLife" width='600px' height='600px' style='border:1px solid #000000;'>
         Your browser does not support html5
     </canvas>
+    <p>User color</p>
+    <input type="color" id="userColor" value="">
 </body>
-
 
 
