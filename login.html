@@ -3,19 +3,28 @@
 
 <head>
   <title>Game of Life signin page</title>
+
+<script>
+  function colorToString(){
+    var returnStr = document.getElementById("userColor").value;
+    document.getElementById("placeColorHere").innerHTML = returnStr;
+  }
+</script>
 </head>
 
 <body>
 
-  <form name="login" method="post" action="checkLogin.php">
+  <form name="login" method="post" action="colorToString()">
     <p>LOGIN</p>
     <p>USERNAME:</p>
-    <input type="text" id="username" value="">
+    <input type="text" id="username" value="" name="username">
     <p>COLOR:</p>
-    <input type="color" id="userColor" value="">
+    <input type="color" id="userColor" value="" name="userColor">
     <p></p>
+    <p id="placeColorHere" name="userColorAsStr" focus="colorToString()"><p>
     <input type="submit" value="Login">
   </form>
+
 
 </body>
 
