@@ -12,7 +12,7 @@ namespace GameOfLife.Controllers
         public IActionResult Index()
         {
             var model = new UserInfo();
-            return View();
+            return View("Game");
         }
 
     }
